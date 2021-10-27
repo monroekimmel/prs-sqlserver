@@ -28,3 +28,11 @@ CREATE TABLE PurchaseRequests
 	REFERENCES Users(ID)
 	);
 
+CREATE TABLE LineItems
+(	
+	);
+
+CREATE TABLE Products
+(	
+);
+
