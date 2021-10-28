@@ -30,9 +30,11 @@ CREATE TABLE PurchaseRequests
 
 CREATE TABLE LineItems
 (	
+
 	);
 
 CREATE TABLE Products
 (	
+
 );
 
