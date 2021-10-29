@@ -2,7 +2,7 @@ DROP DATABASE IF EXISTS prs;
 CREATE DATABASE prs;
 
 CREATE TABLE Users
-(	ID					INT				PRIMARY KEY IDENTITY,
+(	UserID					INT				PRIMARY KEY IDENTITY,
 	FirstName			VARCHAR(50)		NOT NULL,
 	LastName			VARCHAR(50)		NOT NULL,
 	Phone				VARCHAR(13)		NOT NULL,
@@ -14,7 +14,7 @@ CREATE TABLE Users
 	);
 
 CREATE TABLE PurchaseRequests
-(	ID					INT					PRIMARY KEY IDENTITY,
+(	RequestID					INT					PRIMARY KEY IDENTITY,
 	UserID				INT				NOT NULL,
 	Description			VARCHAR(100)	NOT NULL,
 	Justification		VARCHAR(255)	NOT NULL,
@@ -25,11 +25,19 @@ CREATE TABLE PurchaseRequests
 	SubmittedDate		DATETIME2		NOT NULL,
 	ReasonForRejection	VARCHAR(255),
 	CONSTRAINT FK_PRUser FOREIGN KEY (UserID)
-	REFERENCES Users(ID)
+	REFERENCES Users(UserID)
 	);
 
 CREATE TABLE LineItems
-(	
+(	LineItemID	INT	PRIMARY KEY IDENTITY,
+	RequestID	INT	NOT NULL,
+	ProductID,	INT NOT NULL,
+	Quantity	INT	NOT NULL,
+	CONSTRAINT FK_PRRequest FOREIGN KEY (RequestID)
+	REFERENCES PurchaseRequests (RequestID),
+	CONSTRAINT FK_PRProduct FOREIGN KEY (ProductID)
+	REFERENCES Products (ProductID),
+	CONSTRAINT ReqID_ProdID UNIQUE (RequestID, ProductID)
 
 	);
 
